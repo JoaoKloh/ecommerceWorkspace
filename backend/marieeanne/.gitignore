@@ -1,0 +1,38 @@
+# --- COMPILAÇÃO E ARTEFATOS (Java/Maven) ---
+target/
+.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+HELP.md
+
+# --- CONFIGURAÇÕES LOCAL E SEGREDOS ---
+# Bloqueia o arquivo .env na raiz
+.env
+*.env
+
+# Bloqueia propriedades sensíveis locais (se aplicável)
+/src/main/resources/application-local.properties
+
+# NOTA: Removido o PagamentoService.java daqui para que o código seja rastreado!
+
+# --- IDEs (STS, IntelliJ, NetBeans, VS Code) ---
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+.idea
+*.iws
+*.iml
+*.ipr
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+.vscode/
