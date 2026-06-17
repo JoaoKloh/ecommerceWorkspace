@@ -268,6 +268,19 @@ export const api = {
   async solicitarPagamento(ProcessamentoPgRequestDTO: any) {
     const response = await httpClient.post("/api/v1/pedido/solicitarPagamento", ProcessamentoPgRequestDTO)
     return response.data
+  },
+  async getCep(cep:string){
+    const cepLimpo = cep.replace(/\D/g, '');
+    try {
+      const response = await axios.get(`https://brasilapi.com.br/api/cep/v1/${cepLimpo}`);
+      console.log(response.data); 
+    } catch (error) {
+      console.error("Erro na busca de CEP:", error);
+    }    
+  },
+  async oauthgoogle(code:string){
+      const response = await httpClient.post("api/v1/auth/oauthGoogle",{code})
+      return response.data
   }
 }
 

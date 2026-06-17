@@ -50,7 +50,9 @@ public class ClienteController {
         endereco.setEstado(request.endereco().estado());
         endereco.setNumero(request.endereco().numero());
         endereco.setRua(request.endereco().rua());
-        clienteService.registrarOuUpdate(request.nome(), 
+        clienteService.registrarOuUpdate(
+            request.cpf(),
+            request.nome(), 
             request.telefone(), 
             request.dataNascimento(), 
             endereco);

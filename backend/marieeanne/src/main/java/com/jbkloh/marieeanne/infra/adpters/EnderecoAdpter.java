@@ -13,17 +13,16 @@ import lombok.AllArgsConstructor;
 @Component
 public class EnderecoAdpter implements EnderecoRepositoryPort{
 
-    private final EnderecoMapper enderecoMapper;
     private final EnderecoJpaRepository enderecoJpaRepository;
 
     @Override
     public Endereco save(Endereco endereco) {
-        return enderecoMapper.toDomain(enderecoJpaRepository.save(enderecoMapper.toEntity(endereco)));
+        return EnderecoMapper.toDomain(enderecoJpaRepository.save(EnderecoMapper.toEntity(endereco)));
     }
 
     @Override
     public Endereco findById(Long id) {
-        return enderecoMapper.toDomain(enderecoJpaRepository.findById(id).orElse(null));
+        return EnderecoMapper.toDomain(enderecoJpaRepository.findById(id).orElse(null));
     }
 
     @Override

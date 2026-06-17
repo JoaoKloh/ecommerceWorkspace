@@ -3,7 +3,6 @@ package com.jbkloh.marieeanne.infra.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,7 +14,6 @@ import com.jbkloh.marieeanne.core.usecases.ProdutoUseCase;
 import com.jbkloh.marieeanne.infra.dtos.endereco.EnderecoResponseDto;
 import com.jbkloh.marieeanne.infra.dtos.produto.ProdutoCardapioResponse;
 import com.jbkloh.marieeanne.infra.dtos.produto.ProdutoRequestDTO;
-import com.jbkloh.marieeanne.infra.exceptions.AppException;
 import com.jbkloh.marieeanne.infra.persistence.ItemCarrinhoJpaRepository;
 
 import lombok.extern.slf4j.Slf4j;

@@ -85,8 +85,7 @@ public class AutenticationService {
             .httpOnly(true)                     // Impede acesso via JavaScript (XSS)
             .secure(true)                      // Mudar para true em PRODUÇÃO (HTTPS)
             .path("/")          
-            .sameSite("None")        
-            .domain("serveousercontent.com")      // Disponível para toda a aplicação
+            .sameSite("None")  
             .maxAge(Duration.ofHours(1))            // Expiração do cookie       
             .build();
     }
@@ -98,7 +97,6 @@ public class AutenticationService {
             .secure(true)            // Mudar para true em PRODUÇÃO
             .path("/")
             .sameSite("None")
-            .domain("serveousercontent.com")
             .maxAge(Duration.ofDays(7))  // Refresh token dura mais
             .build();
     }
@@ -108,7 +106,6 @@ public class AutenticationService {
         .secure(true)       // Mudar para true em produção
         .path("/")
         .sameSite("None")
-        .domain("serveousercontent.com")
         .maxAge(Duration.ofHours(1))
         .build();
     }
@@ -123,7 +120,6 @@ public class AutenticationService {
     private ResponseCookie criarCookieLimpo(String nome, boolean httpOnly) {
     return ResponseCookie.from(nome, "")
         .path("/")
-        .domain("serveousercontent.com") // <--- ESSENCIAL PARA O NAVEGADOR ACHAR O COOKIE
         .httpOnly(httpOnly)
         .secure(true)
         .sameSite("None")

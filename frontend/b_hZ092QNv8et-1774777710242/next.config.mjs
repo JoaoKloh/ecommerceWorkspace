@@ -7,8 +7,7 @@ const nextConfig = {
     return [
       {
         source: '/api/:path*',
-        destination: 'https://ron-unphilologic-ricky.ngrok-free.dev/api/:path*',
-        destination: 'https://marie-anne-api.serveousercontent.com/api/:path*',
+        destination: `${process.env.NEXT_PUBLIC_API_URL}/api/:path*`,
       },
     ];
   },
@@ -16,10 +15,12 @@ const nextConfig = {
     unoptimized: true,
   },
     allowedDevOrigins: [
+      '*.loca.lt',
       "ron-unphilologic-ricky.ngrok-free.dev",
       'https://marie-anne-api.serveousercontent.com',
       '*.serveousercontent.com', 
-      '*.serveo.net'
+      '*.serveo.net',
+      '.trycloudflare.com'
     ],
   }
 

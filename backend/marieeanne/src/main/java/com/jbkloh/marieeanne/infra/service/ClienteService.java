@@ -23,7 +23,7 @@ public class ClienteService {
     private final UsuarioUseCase usuarioUseCase;
 
     @Transactional
-    public void registrarOuUpdate(String nome, String telefone, LocalDate dataNascimento, Endereco endereco) {
+    public void registrarOuUpdate(String cpf,String nome, String telefone, LocalDate dataNascimento, Endereco endereco) {
         String email = autenticacaoPort.getEmailUsuarioLogado();
         Optional<Usuario> user = usuarioUseCase.findByEmail(email);
 
@@ -35,11 +35,14 @@ public class ClienteService {
                 novo.setEndereco(endereco);
                 novo.setNome(nome);
                 novo.setTelefone(telefone);
+                novo.setCpf(cpf);
                 clienteUseCase.registrarCliente(novo);
             } else {
                 Cliente clienteExistente = cliente.get();
                 clienteExistente.setDataNascimento(dataNascimento);
                 clienteExistente.setNome(nome);
+                clienteExistente.setCpf(cpf);
+                clienteExistente.setTelefone(telefone);
                 if (clienteExistente.getEndereco() != null && endereco != null) {
                     
                     Endereco enderecoAtual = clienteExistente.getEndereco();

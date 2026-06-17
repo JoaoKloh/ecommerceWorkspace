@@ -11,16 +11,6 @@ public class Carrinho {
     private Long id;
     private BigDecimal valorTotal;
 
-    public BigDecimal getValorTotal() {
-        if (this.produtos == null || this.produtos.isEmpty()) {
-            return BigDecimal.ZERO.setScale(2, RoundingMode.HALF_UP);
-        }
-        return this.produtos.stream()
-        .map(item -> item.getPrecoUnitario().multiply(BigDecimal.valueOf(item.getQuantidade())))
-        .reduce(BigDecimal.ZERO, BigDecimal::add)
-        .setScale(2, RoundingMode.HALF_UP);
-    }
-
     public Carrinho(){
         
     }
@@ -29,6 +19,16 @@ public class Carrinho {
         this.valorTotal = valorTotal;
     }
 
+    public BigDecimal getValorTotal() {
+        if (this.produtos == null || this.produtos.isEmpty()) {
+            return BigDecimal.ZERO.setScale(2, RoundingMode.HALF_UP);
+        }
+        this.valorTotal= this.produtos.stream()
+        .map(item -> item.getPrecoUnitario().multiply(BigDecimal.valueOf(item.getQuantidade())))
+        .reduce(BigDecimal.ZERO, BigDecimal::add)
+        .setScale(2, RoundingMode.HALF_UP);
+        return valorTotal;
+    }
 
     public Carrinho(Long id, BigDecimal valorTotal) {
         this.id = id;
@@ -54,7 +54,6 @@ public class Carrinho {
     public List<ItemCarrinho> getProdutos() {
         return produtos;
     }
-
     public Usuario getCliente() {
         return cliente;
     }

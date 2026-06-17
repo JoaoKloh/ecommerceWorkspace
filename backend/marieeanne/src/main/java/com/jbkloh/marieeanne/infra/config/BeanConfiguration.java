@@ -2,6 +2,10 @@ package com.jbkloh.marieeanne.infra.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.oauth2.jwt.JwtDecoder;
+import org.springframework.security.oauth2.jwt.JwtEncoder;
+import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
+import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
 
 import com.jbkloh.marieeanne.core.ports.AutenticacaoPort;
 import com.jbkloh.marieeanne.core.ports.CarrinhoRepositoryPort;
@@ -32,6 +36,13 @@ import com.jbkloh.marieeanne.core.usecases.impl.PagamentoUseCaseImpl;
 import com.jbkloh.marieeanne.core.usecases.impl.PedidoUseCaseImpl;
 import com.jbkloh.marieeanne.core.usecases.impl.ProdutoLojaUseCaseImpl;
 import com.jbkloh.marieeanne.core.usecases.impl.ProdutoUseCaseImpl;
+import com.jbkloh.marieeanne.infra.security.utils.RSAKeyProperties;
+import com.nimbusds.jose.jwk.JWK;
+import com.nimbusds.jose.jwk.JWKSet;
+import com.nimbusds.jose.jwk.RSAKey;
+import com.nimbusds.jose.jwk.source.ImmutableJWKSet;
+import com.nimbusds.jose.jwk.source.JWKSource;
+import com.nimbusds.jose.proc.SecurityContext;
 
 @Configuration
 public class BeanConfiguration {
@@ -75,5 +86,17 @@ public class BeanConfiguration {
     @Bean
     public ProdutoLojaUseCase produtoLojaUseCase(ProdutoLojaRepositoryPort produtoLojaRepositoryPort){
         return new ProdutoLojaUseCaseImpl(produtoLojaRepositoryPort);
+    }
+    @Bean
+    public JwtEncoder jwtEncoder(){
+        RSAKeyProperties keys = new RSAKeyProperties();
+        JWK jwk = new RSAKey.Builder(keys.getPublicKey()).privateKey(keys.getPrivateKey()).build();
+        JWKSource<SecurityContext> jwks = new ImmutableJWKSet<>(new JWKSet(jwk));
+        return new NimbusJwtEncoder(jwks);
+    }
+    @Bean
+    public JwtDecoder jwtDecoder() {
+        RSAKeyProperties keys = new RSAKeyProperties();
+        return NimbusJwtDecoder.withPublicKey(keys.getPublicKey()).build();
     }
 }

@@ -29,7 +29,8 @@ public class ItemCarrinho {
 
     public BigDecimal getPrecoUnitario() {
         if (this.produto==null) return BigDecimal.ZERO;
-        return this.produto.getProduto().getPrecoComDesconto();
+            precoUnitario=this.produto.getProduto().getPrecoComDesconto();
+        return precoUnitario;
     }
 
     public void setPrecoUnitario(BigDecimal precoUnitario) {

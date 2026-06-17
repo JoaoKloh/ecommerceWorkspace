@@ -5,7 +5,8 @@ import java.util.List;
 
 public record LoginResponseDTO(
     String email,
-    List<String> authoritities
+    List<String> authoritities,
+    String urlDirecionamento
 ) {
     
 }

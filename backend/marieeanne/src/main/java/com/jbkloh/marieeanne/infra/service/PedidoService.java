@@ -14,10 +14,8 @@ import com.jbkloh.marieeanne.core.models.Carrinho;
 import com.jbkloh.marieeanne.core.models.Cliente;
 import com.jbkloh.marieeanne.core.models.Pedido;
 import com.jbkloh.marieeanne.core.usecases.PedidoUseCase;
-import com.jbkloh.marieeanne.infra.dtos.cliente.ClienteRequestDTO;
 import com.jbkloh.marieeanne.infra.dtos.itemPedido.ItemPedidoResponseDTO;
 import com.jbkloh.marieeanne.infra.dtos.pagamento.PagamentoResponseDTO;
-import com.jbkloh.marieeanne.infra.dtos.pagamento.PaymentRequestDTO;
 import com.jbkloh.marieeanne.infra.dtos.pedido.PedidoResponseDTO;
 
 import lombok.RequiredArgsConstructor;
@@ -29,8 +27,6 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 public class PedidoService  {
         private final PedidoUseCase pedidoUseCase;
-        private final ClienteService clienteService;
-        private final CarrinhoService carrinhoService;
 
         @Transactional
         public Pedido criarPedidoCarrinho(Carrinho carrinho, Cliente cliente, LocalDate dataRetirada, LocalTime horarioRetirada) {

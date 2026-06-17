@@ -25,14 +25,15 @@ public class ClienteMapper {
     public static Cliente toDomain(ClienteEntity entity) {
         if (entity == null) return null;
 
-        return new Cliente(
-            entity.getId(),
-            entity.getNome(),
-            entity.getCpf(),
-            entity.getTelefone(),
-            EnderecoMapper.toDomain(entity.getEndereco()),
-            entity.getDataNascimento(),
-            UsuarioMapper.toDomain(entity.getUsuario())
-        );
+        Cliente cliente = new Cliente();
+        cliente.setId(entity.getId());
+        cliente.setCpf(entity.getCpf());
+        cliente.setDataNascimento(entity.getDataNascimento());  
+        cliente.setEndereco(EnderecoMapper.toDomain(entity.getEndereco()));
+        cliente.setUser(UsuarioMapper.toDomain(entity.getUsuario()));
+        cliente.setTelefone(entity.getTelefone());
+        cliente.setNome(entity.getNome());
+        return cliente;
+
     }
 }
