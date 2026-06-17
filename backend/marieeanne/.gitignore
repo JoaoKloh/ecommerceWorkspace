@@ -11,8 +11,7 @@ HELP.md
 *.env
 
 # Bloqueia propriedades sensíveis locais (se aplicável)
-/src/main/resources/application-local.properties
-
+marieeanne/src/main/resources/application.properties
 # NOTA: Removido o PagamentoService.java daqui para que o código seja rastreado!
 
 # --- IDEs (STS, IntelliJ, NetBeans, VS Code) ---
